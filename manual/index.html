@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Musibandas | Apresentação para Professores</title>
+  <meta name="description" content="Apresentação do curso Musibandas para professores da Musiartes." />
+  <style>
+    :root {
+      --navy: #101b3f;
+      --navy-2: #172859;
+      --blue: #2756a3;
+      --gold: #d99b2b;
+      --gold-2: #f2c45f;
+      --paper: #fffaf0;
+      --text: #202842;
+      --muted: #64708b;
+      --line: #e8dcc7;
+      --card: #ffffff;
+      --soft: #f8efe0;
+      --radius: 22px;
+      --shadow: 0 18px 45px rgba(16, 27, 63, .12);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(217,155,43,.18), transparent 28rem),
+        linear-gradient(180deg, #fffaf0 0%, #f7eedf 100%);
+      line-height: 1.55;
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at 20% 10%, rgba(242,196,95,.28), transparent 28rem),
+        linear-gradient(135deg, var(--navy), var(--navy-2));
+      color: #fff;
+      padding: 56px 20px 46px;
+      border-bottom: 8px solid var(--gold);
+    }
+    .wrap { width: min(1080px, calc(100% - 34px)); margin: 0 auto; }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      font-size: 13px;
+      margin-bottom: 34px;
+    }
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #20150a;
+      background: linear-gradient(135deg, var(--gold-2), var(--gold));
+      font-weight: 900;
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(48px, 10vw, 96px);
+      line-height: .93;
+      letter-spacing: -.06em;
+    }
+    .subtitle {
+      font-size: clamp(20px, 3vw, 31px);
+      color: rgba(255,255,255,.84);
+      max-width: 880px;
+      margin: 0 0 28px;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+    .tag {
+      border: 1px solid rgba(255,255,255,.24);
+      background: rgba(255,255,255,.09);
+      color: rgba(255,255,255,.9);
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      background: rgba(255,250,240,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 12px 0;
+    }
+    nav a {
+      color: var(--navy);
+      text-decoration: none;
+      white-space: nowrap;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    main { padding: 34px 0 70px; }
+    section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin: 0 0 22px;
+      padding: clamp(24px, 4vw, 42px);
+      overflow: hidden;
+    }
+    .section-label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    h2 {
+      margin: 0 0 20px;
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.04em;
+      color: var(--navy);
+    }
+    h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 22px;
+      letter-spacing: -.02em;
+    }
+    p { font-size: 19px; margin: 0 0 16px; }
+    ul { margin: 0; padding-left: 1.15em; }
+    li { margin: 9px 0; font-size: 18px; }
+    strong { color: var(--navy); }
+
+    .lead {
+      font-size: clamp(22px, 3vw, 34px);
+      line-height: 1.22;
+      color: var(--navy);
+      font-weight: 850;
+      letter-spacing: -.03em;
+      margin-bottom: 0;
+    }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+    .card {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 20px;
+    }
+    .card p { font-size: 17px; color: var(--muted); margin: 0; }
+    .number {
+      font-size: 44px;
+      line-height: 1;
+      color: var(--gold);
+      font-weight: 950;
+      letter-spacing: -.05em;
+      margin-bottom: 8px;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 4px; }
+    .pill {
+      display: inline-flex;
+      border-radius: 999px;
+      background: #fff4dc;
+      border: 1px solid #ecd19c;
+      color: #855c12;
+      padding: 10px 13px;
+      font-weight: 850;
+    }
+    .table-wrap { overflow-x: auto; margin-top: 20px; border-radius: 18px; border: 1px solid var(--line); }
+    table { width: 100%; border-collapse: collapse; background: #fff; min-width: 650px; }
+    th, td { text-align: left; padding: 16px 18px; border-bottom: 1px solid var(--line); font-size: 17px; }
+    th { background: var(--navy); color: #fff; }
+    tr:last-child td { border-bottom: 0; }
+    .highlight {
+      color: #251808;
+      background: linear-gradient(135deg, var(--gold-2), #ffe09a);
+      padding: 2px 9px 4px;
+      border-radius: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .note {
+      background: #eef4ff;
+      border-left: 5px solid var(--blue);
+      border-radius: 16px;
+      padding: 18px 20px;
+      color: #24385f;
+      margin-top: 20px;
+    }
+    .note p { margin: 0; font-size: 18px; }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 10px 0 50px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .hero { padding-top: 40px; }
+      .grid, .grid-3 { grid-template-columns: 1fr; }
+      p { font-size: 17px; }
+      li { font-size: 16px; }
+      nav a { font-size: 13px; }
+      section { scroll-margin-top: 74px; }
+    }
+
+    @media print {
+      nav { display: none; }
+      body { background: white; }
+      .hero { background: var(--navy); }
+      section { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="brand"><span class="mark">♪</span> Musiartes — Escola de Música</div>
+      <h1>Musibandas</h1>
+      <p class="subtitle">Apresentação para professores: estrutura pedagógica, formação dos grupos, ingresso de alunos, valores e remuneração docente.</p>
+      <div class="meta">
+        <span class="tag">Curso de prática de bandas</span>
+        <span class="tag">Uso interno</span>
+        <span class="tag">Atualizado em 11/06/2026</span>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Navegação do documento">
+    <div class="wrap">
+      <a href="#visao-geral">Visão geral</a>
+      <a href="#aulas">Aulas</a>
+      <a href="#bandas">Bandas</a>
+      <a href="#ingresso">Ingresso</a>
+      <a href="#valores">Valores</a>
+      <a href="#remuneracao">Remuneração</a>
+      <a href="#proximos-passos">Próximos passos</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="visao-geral">
+      <div class="section-label">1. Visão geral</div>
+      <h2>O que é o Musibandas?</h2>
+      <p class="lead">O Musibandas é o novo curso de prática de conjunto da Musiartes, desenhado para oferecer ao aluno uma experiência real de performance em grupo.</p>
+      <div class="grid">
+        <div class="card"><h3>Integração musical</h3><p>Diferentes instrumentos tocando juntos, desenvolvendo escuta, tempo, percepção coletiva e dinâmica de banda.</p></div>
+        <div class="card"><h3>Preparação para palco</h3><p>O curso prepara os alunos para apresentações ao vivo em eventos exclusivos da escola.</p></div>
+      </div>
+    </section>
+
+    <section id="aulas">
+      <div class="section-label">2. Estrutura das aulas</div>
+      <h2>Não é ensaio livre. É aula orientada.</h2>
+      <p>Diferente de modelos de ensaio livre, o Musibandas funciona como aula com orientação integral. O professor atua como mentor musical e produtor da banda.</p>
+      <div class="grid">
+        <div class="card"><div class="number">1h30</div><h3>Duração</h3><p>Cada encontro tem 1h30 de duração.</p></div>
+        <div class="card"><div class="number">1x</div><h3>Frequência</h3><p>Uma vez por semana, em módulo mensal com renovação contínua.</p></div>
+        <div class="card"><h3>Professor presente</h3><p>O professor permanece durante todo o período, orientando o grupo.</p></div>
+        <div class="card"><h3>Sem ensaio extra sem supervisão</h3><p>O tempo contratado é dedicado à prática orientada, não a ensaio livre.</p></div>
+      </div>
+      <div class="pill-row">
+        <span class="pill">Sugestões pedagógicas do professor</span>
+        <span class="pill">Escolhas dos alunos</span>
+        <span class="pill">Arranjos adaptados</span>
+        <span class="pill">Objetivo de apresentação</span>
+      </div>
+      <div class="note"><p><strong>Ideia central:</strong> manter o aluno motivado sem abrir mão de evolução técnica, organização e resultado musical.</p></div>
+    </section>
+
+    <section id="bandas">
+      <div class="section-label">3. Formação das bandas</div>
+      <h2>Curadoria é decisiva</h2>
+      <p>A formação das bandas é estratégica para garantir longevidade dos grupos, satisfação dos alunos e qualidade da experiência musical.</p>
+      <div class="grid-3">
+        <div class="card"><div class="number">3</div><h3>Mínimo</h3><p>Uma banda inicia com pelo menos 3 integrantes.</p></div>
+        <div class="card"><div class="number">4–5</div><h3>Ideal</h3><p>Formato com melhor equilíbrio pedagógico e musical.</p></div>
+        <div class="card"><div class="number">8</div><h3>Máximo</h3><p>Limite para manter qualidade de orientação e participação.</p></div>
+      </div>
+      <div class="grid">
+        <div class="card"><h3>Critérios de agrupamento</h3><p>Nível técnico, faixa etária e afinidade por estilo musical.</p></div>
+        <div class="card"><h3>Professor Orientador</h3><p>Responsável final pela formação, entrosamento e adaptação dos arranjos.</p></div>
+      </div>
+      <div class="note"><p><strong>Níveis mistos são permitidos</strong>, desde que os arranjos sejam adaptados para que iniciantes e avançados possam tocar juntos de forma harmônica.</p></div>
+    </section>
+
+    <section id="ingresso">
+      <div class="section-label">4. Ingresso e avaliação</div>
+      <h2>Como o aluno entra?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Alunos Musiartes</h3>
+          <ul>
+            <li>Ingresso por indicação direta do professor de instrumento individual.</li>
+            <li>Perfil precisa combinar com a proposta de prática de conjunto.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Público externo</h3>
+          <ul>
+            <li>Questionário de nivelamento.</li>
+            <li>Envio de vídeo para avaliação prática.</li>
+            <li>Aula experimental de <strong>R$ 50,00</strong> para o aluno.</li>
+            <li>Remuneração do professor na experimental: <strong>R$ 21,00</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note"><p><strong>Desistências:</strong> em caso de saída de um integrante, a escola terá até <span class="highlight">1 mês</span> para reorganizar a banda ou encontrar substituto.</p></div>
+    </section>
+
+    <section id="valores">
+      <div class="section-label">5. Tabela comercial</div>
+      <h2>Valores para alunos</h2>
+      <p>Os valores foram definidos para incentivar a adesão dos alunos atuais e atrair novos talentos para a escola.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Categoria</th><th>Valor</th><th>Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Aluno Musiartes ativo</td><td><strong>R$ 268,50</strong></td><td>Matrícula isenta</td></tr>
+            <tr><td>Público externo novo</td><td><strong>R$ 298,50</strong></td><td>Matrícula isenta</td></tr>
+            <tr><td>Aula experimental externo</td><td><strong>R$ 50,00</strong></td><td>Valor cobrado do aluno</td></tr>
+            <tr><td>Remuneração professor — experimental</td><td><strong>R$ 21,00</strong></td><td>Por experimental realizada</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="remuneracao">
+      <div class="section-label">6. Remuneração e incentivos</div>
+      <h2>Modelo de remuneração do professor</h2>
+      <p>O modelo é escalonado, premiando o professor pelo preenchimento das vagas e pelo sucesso das apresentações.</p>
+      <div class="grid">
+        <div class="card"><div class="number">R$ 45</div><h3>Bandas com 3 alunos</h3><p>Valor por aula de 1h30 realizada.</p></div>
+        <div class="card"><div class="number">R$ 60</div><h3>Bandas com 4 ou mais alunos</h3><p>Valor por aula de 1h30 realizada.</p></div>
+        <div class="card"><div class="number">R$ 21</div><h3>Aula experimental</h3><p>Remuneração do professor por aula experimental realizada.</p></div>
+        <div class="card"><div class="number">R$ 150</div><h3>Show de encerramento</h3><p>Bônus por evento exclusivo do Musibandas realizado.</p></div>
+      </div>
+      <div class="note"><p>O show de encerramento é um evento exclusivo do Musibandas, independente do Musishow tradicional.</p></div>
+    </section>
+
+    <section id="proximos-passos">
+      <div class="section-label">7. Cronograma</div>
+      <h2>Próximos passos</h2>
+      <div class="grid">
+        <div class="card"><h3>1. Disponibilidade</h3><p>Professores informam horários livres para a coordenação.</p></div>
+        <div class="card"><h3>2. Salas</h3><p>Cruzamento da agenda de professores com Centro e Camobi.</p></div>
+        <div class="card"><h3>3. Indicações</h3><p>Professores de instrumento indicam alunos com perfil para prática de conjunto.</p></div>
+        <div class="card"><h3>4. Comercial</h3><p>Alinhamento final com a secretaria para início das vendas e agendamento de experimentais.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label">Fechamento</div>
+      <h2>Mensagem principal</h2>
+      <p class="lead">O Musibandas nasce para transformar prática de conjunto em um produto pedagógico forte, organizado e com experiência real de palco.</p>
+      <div class="note"><p>Com boa curadoria dos professores, o curso pode aumentar engajamento, retenção e percepção de valor da Musiartes.</p></div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">Documento de uso interno da Musiartes — 11 de junho de 2026.</footer>
+</body>
+</html>
