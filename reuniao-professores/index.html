@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reunião com Professores | Musiartes</title>
+  <style>
+    :root {
+      --bg: #f6f1e8;
+      --paper: #fffaf1;
+      --ink: #251f1a;
+      --muted: #6f6257;
+      --brand: #8a1f1f;
+      --brand-2: #c28a3a;
+      --line: rgba(37,31,26,.14);
+      --card: rgba(255,255,255,.72);
+      --shadow: 0 24px 70px rgba(55, 33, 18, .14);
+      --radius: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(194,138,58,.18), transparent 32%),
+        radial-gradient(circle at 90% 18%, rgba(138,31,31,.14), transparent 28%),
+        linear-gradient(180deg, #fbf6ed 0%, var(--bg) 100%);
+      line-height: 1.45;
+    }
+
+    .deck {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 4px 28px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: .02em;
+    }
+
+    .brand {
+      font-weight: 800;
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .slide {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(28px, 5vw, 64px);
+      margin: 0 0 28px;
+      background: rgba(255, 250, 241, .82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(138,31,31,.08), transparent 38%, rgba(194,138,58,.09));
+      pointer-events: none;
+    }
+
+    .slide > * { position: relative; z-index: 1; }
+
+    .eyebrow {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--brand);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      margin: 0 0 14px;
+    }
+
+    h1, h2, h3 { margin: 0; line-height: 1.05; }
+    h1 {
+      max-width: 960px;
+      font-size: clamp(46px, 8vw, 92px);
+      letter-spacing: -.06em;
+    }
+    h2 {
+      max-width: 900px;
+      font-size: clamp(34px, 5.8vw, 70px);
+      letter-spacing: -.055em;
+    }
+    h3 {
+      font-size: clamp(19px, 2.2vw, 25px);
+      letter-spacing: -.025em;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin: 26px 0 0;
+      font-size: clamp(20px, 2.35vw, 30px);
+      color: var(--muted);
+      letter-spacing: -.02em;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(138,31,31,.09);
+      border: 1px solid rgba(138,31,31,.12);
+      color: var(--brand);
+      font-weight: 800;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .grid.two { grid-template-columns: repeat(2, 1fr); }
+    .grid.four { grid-template-columns: repeat(4, 1fr); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      min-height: 164px;
+      backdrop-filter: blur(8px);
+    }
+
+    .num {
+      display: block;
+      font-size: clamp(38px, 5vw, 64px);
+      font-weight: 900;
+      letter-spacing: -.07em;
+      color: var(--brand);
+      margin-bottom: 8px;
+    }
+
+    .price {
+      display: block;
+      font-size: clamp(42px, 5.5vw, 72px);
+      font-weight: 950;
+      letter-spacing: -.07em;
+      color: var(--brand);
+      margin-bottom: 8px;
+    }
+
+    .card p, .note p, li {
+      color: var(--muted);
+      margin: 10px 0 0;
+      font-size: 18px;
+    }
+
+    .note {
+      margin-top: 34px;
+      padding: 24px 28px;
+      border-left: 6px solid var(--brand-2);
+      background: rgba(194,138,58,.11);
+      border-radius: 18px;
+    }
+
+    .bullets {
+      display: grid;
+      gap: 14px;
+      margin: 34px 0 0;
+      padding: 0;
+      list-style: none;
+      max-width: 920px;
+    }
+
+    .bullets li {
+      margin: 0;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.6);
+      border-radius: 18px;
+      font-size: clamp(19px, 2vw, 24px);
+      color: var(--ink);
+    }
+
+    .bullets li strong { color: var(--brand); }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      padding: 4px 8px 0;
+    }
+
+    @media (max-width: 920px) {
+      .slide { min-height: auto; }
+      .grid, .grid.two, .grid.four { grid-template-columns: 1fr; }
+      .topbar, .footer { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media print {
+      body { background: white; }
+      .deck { width: 100%; padding: 0; }
+      .topbar, .footer { display: none; }
+      .slide {
+        min-height: 100vh;
+        page-break-after: always;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+        border: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <div class="topbar">
+      <div class="brand">Musiartes</div>
+      <div>Reunião com professores • online • 21h20</div>
+    </div>
+
+    <section class="slide">
+      <p class="eyebrow">Reunião com professores</p>
+      <h1>Reajuste, contratos, conduta e organização da rotina</h1>
+      <p class="lead">Este é um primeiro rascunho para alinharmos os pontos principais da reunião e organizar a comunicação com clareza.</p>
+      <div class="meta-row">
+        <span class="pill">Online</span>
+        <span class="pill">Hoje • 21h20</span>
+        <span class="pill">Musiartes</span>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">1. Objetivo da reunião</p>
+      <h2>Alinhar uma nova etapa com transparência</h2>
+      <p class="lead">A ideia é apresentar as atualizações de remuneração, contrato de serviço, manual de conduta e alguns pontos importantes da rotina da escola.</p>
+      <div class="grid">
+        <article class="card">
+          <span class="num">01</span>
+          <h3>Remuneração</h3>
+          <p>Novos valores para Flex, Triflex e Vip.</p>
+        </article>
+        <article class="card">
+          <span class="num">02</span>
+          <h3>Contratos</h3>
+          <p>Atualização do contrato de serviço e manual de conduta.</p>
+        </article>
+        <article class="card">
+          <span class="num">03</span>
+          <h3>Rotina</h3>
+          <p>Ferramentas, agenda, materiais, salas e organização.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">2. Reajuste de remuneração</p>
+      <h2>Novos valores</h2>
+      <p class="lead">A partir da atualização, os valores passam a ser organizados por modalidade de atendimento.</p>
+      <div class="grid">
+        <article class="card">
+          <span class="price">R$ 17,50</span>
+          <h3>Flex</h3>
+          <p>Novo valor de remuneração para aulas do plano Flex.</p>
+        </article>
+        <article class="card">
+          <span class="price">R$ 17,50</span>
+          <h3>Triflex</h3>
+          <p>Novo valor de remuneração para aulas do plano Triflex.</p>
+        </article>
+        <article class="card">
+          <span class="price">R$ 30,00</span>
+          <h3>Vip</h3>
+          <p>Novo valor de remuneração para aulas Vip.</p>
+        </article>
+      </div>
+      <div class="note">
+        <h3>Ponto de fala</h3>
+        <p>Explicar o motivo do reajuste, quando começa a valer e como isso será refletido nos pagamentos.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">3. Contrato e manual de conduta</p>
+      <h2>Atualização dos combinados de trabalho</h2>
+      <p class="lead">Além dos novos valores, o contrato de serviço e o manual de conduta serão atualizados para deixar as regras mais claras para todos.</p>
+      <ul class="bullets">
+        <li><strong>Remuneração para reuniões:</strong> reuniões convocadas pela escola terão pagamento de R$ 20,00.</li>
+        <li><strong>Desmarcação de aulas:</strong> alteração do prazo para 1 semana de antecedência.</li>
+        <li><strong>Planejamento:</strong> o pagamento de planejamento ficará ligado ao comparecimento nas reuniões.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">4. Musiweb para professores</p>
+      <h2>Números e solicitações de forma mais prática</h2>
+      <p class="lead">Em breve, o Musiweb estará disponível para os professores com a finalidade de trazer informações importantes da escola de maneira simples e acessível.</p>
+      <div class="grid two">
+        <article class="card">
+          <h3>Indicadores</h3>
+          <p>Número de alunos, novas matrículas, cancelamentos, desistências e aulas experimentais.</p>
+        </article>
+        <article class="card">
+          <h3>Solicitações</h3>
+          <p>Pedido de manutenção, solicitação de materiais, contrato de serviço e manual de conduta.</p>
+        </article>
+      </div>
+      <div class="note">
+        <h3>Objetivo</h3>
+        <p>Dar mais clareza para os professores e facilitar a comunicação com a coordenação.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">5. Emusys</p>
+      <h2>Agenda, valores e experimentais</h2>
+      <p class="lead">O Emusys segue sendo a ferramenta de referência para acompanhamento da rotina operacional dos professores.</p>
+      <ul class="bullets">
+        <li><strong>Agenda:</strong> acompanhamento dos horários, aulas e organização semanal.</li>
+        <li><strong>Valores:</strong> conferência das informações relacionadas à remuneração.</li>
+        <li><strong>Experimentais:</strong> registro e acompanhamento das aulas experimentais.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">6. Cuidado com materiais e salas</p>
+      <h2>Organização também faz parte da experiência da escola</h2>
+      <p class="lead">Precisamos reforçar o cuidado coletivo com os materiais, equipamentos e salas de aula. Isso impacta diretamente a qualidade das aulas e a imagem da escola.</p>
+      <div class="grid">
+        <article class="card">
+          <h3>Materiais</h3>
+          <p>Pedestais, microfones, cabos, instrumentos e acessórios precisam ser usados e guardados com cuidado.</p>
+        </article>
+        <article class="card">
+          <h3>Equipamentos</h3>
+          <p>Evitar deixar luzes e equipamentos ligados após o uso das salas.</p>
+        </article>
+        <article class="card">
+          <h3>Ambiente</h3>
+          <p>Manter salas limpas, organizadas e prontas para o próximo professor e aluno.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">7. Exemplo recente</p>
+      <h2>Um mês de materiais nas salas do Centro</h2>
+      <p class="lead">Mesmo com pouco tempo de uso dos materiais de canto nas salas do Centro, já tivemos situações que mostram a necessidade de mais atenção.</p>
+      <ul class="bullets">
+        <li><strong>Pedestal quebrado</strong> em pouco tempo de uso.</li>
+        <li><strong>Microfone e cabos estragados</strong> por falta de cuidado ou armazenamento inadequado.</li>
+        <li><strong>Equipamentos e luzes acesas</strong> após o uso das salas.</li>
+        <li><strong>Sujeira e desorganização</strong> prejudicando o ambiente para os próximos horários.</li>
+      </ul>
+      <div class="note">
+        <h3>Ponto de fala</h3>
+        <p>O tom aqui deve ser firme, mas não acusatório: o objetivo é criar responsabilidade coletiva e preservar a estrutura da escola.</p>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">8. Próximos passos</p>
+      <h2>Como seguimos depois da reunião</h2>
+      <ul class="bullets">
+        <li><strong>1. Apresentar os novos valores</strong> e explicar quando começam a valer.</li>
+        <li><strong>2. Enviar contrato e manual de conduta</strong> para leitura e formalização.</li>
+        <li><strong>3. Orientar o uso do Musiweb</strong> quando estiver disponível aos professores.</li>
+        <li><strong>4. Reforçar o uso correto do Emusys</strong> para agenda, valores e experimentais.</li>
+        <li><strong>5. Alinhar cuidado com salas e materiais</strong> como regra permanente da rotina.</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Fechamento</p>
+      <h2>Mensagem principal</h2>
+      <p class="lead">Quero que a equipe tenha clareza sobre valores, regras, ferramentas e responsabilidades. Quanto mais alinhada a nossa rotina, melhor fica o trabalho para professores, alunos e escola.</p>
+      <div class="note">
+        <h3>Tom da conversa</h3>
+        <p>Transparência, organização e parceria — mas com responsabilidade sobre combinados, prazos e cuidado com a estrutura da escola.</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>Musiartes • Reunião com professores</div>
+      <div>Rascunho 1 • material de apoio interno</div>
+    </div>
+  </main>
+</body>
+</html>
